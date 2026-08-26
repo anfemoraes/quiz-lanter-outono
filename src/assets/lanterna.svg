@@ -1,0 +1,45 @@
+<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cordão de suspensão -->
+  <line x1="50" y1="0" x2="50" y2="14" stroke="#D4AF37" stroke-width="1.5" />
+
+  <!-- Tampa superior -->
+  <rect x="38" y="12" width="24" height="8" rx="2" fill="#D4AF37" />
+
+  <!-- Corpo da lanterna -->
+  <path d="M50 20
+           C20 20, 12 55, 12 70
+           C12 95, 25 118, 50 118
+           C75 118, 88 95, 88 70
+           C88 55, 80 20, 50 20 Z"
+        fill="url(#gradCorpo)" />
+
+  <!-- Nervuras verticais (costelas) -->
+  <g stroke="#8A0C20" stroke-width="1" opacity="0.5" fill="none">
+    <path d="M50 20 C34 30, 28 55, 28 70 C28 90, 36 110, 50 118" />
+    <path d="M50 20 C42 30, 38 55, 38 70 C38 90, 42 110, 50 118" />
+    <path d="M50 20 C58 30, 62 55, 62 70 C62 90, 58 110, 50 118" />
+    <path d="M50 20 C66 30, 72 55, 72 70 C72 90, 64 110, 50 118" />
+  </g>
+
+  <!-- Brilho central -->
+  <ellipse cx="50" cy="65" rx="18" ry="30" fill="#FFB347" opacity="0.25" />
+
+  <!-- Tampa inferior -->
+  <rect x="38" y="116" width="24" height="8" rx="2" fill="#D4AF37" />
+
+  <!-- Borla -->
+  <line x1="50" y1="124" x2="50" y2="134" stroke="#D4AF37" stroke-width="1.5" />
+  <g stroke="#D4AF37" stroke-width="1" stroke-linecap="round">
+    <line x1="46" y1="134" x2="45" y2="140" />
+    <line x1="50" y1="134" x2="50" y2="140" />
+    <line x1="54" y1="134" x2="55" y2="140" />
+  </g>
+
+  <defs>
+    <linearGradient id="gradCorpo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D9334D" />
+      <stop offset="60%" stop-color="#C8102E" />
+      <stop offset="100%" stop-color="#8A0C20" />
+    </linearGradient>
+  </defs>
+</svg>

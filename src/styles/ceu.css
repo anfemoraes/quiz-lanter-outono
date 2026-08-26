@@ -1,0 +1,56 @@
+.ceu-noturno {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 15%, #1a2f5c 0%, #0B1233 55%, #060a1a 100%);
+}
+
+.ceu-noturno__estrelas {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 40px, #ffe9b3, transparent),
+    radial-gradient(1px 1px at 210px 120px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 280px 60px, #fff, transparent),
+    radial-gradient(1px 1px at 40px 150px, #ffe9b3, transparent),
+    radial-gradient(1.5px 1.5px at 320px 180px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 200px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 360px 220px;
+  animation: cintilar 4s ease-in-out infinite alternate;
+  opacity: 0.8;
+}
+
+@keyframes cintilar {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* Lua cheia ao fundo, discreta */
+.ceu-noturno__lua {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff8e1, #f3d98b 70%);
+  box-shadow: 0 0 40px 10px rgba(243, 217, 139, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ceu-noturno__estrelas { animation: none; }
+}
+.ceu-noturno__nuvens {
+  position: absolute;
+  inset: 0;
+  background-image: url('/src/assets/nuvem-pattern.svg');
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.06;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}

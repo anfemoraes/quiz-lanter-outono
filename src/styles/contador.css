@@ -1,0 +1,27 @@
+.contador {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(11, 18, 51, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  backdrop-filter: blur(4px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.contador__valor {
+  color: #D4AF37;
+  font-size: 1.1rem;
+}
+
+.contador__separador,
+.contador__total {
+  color: rgba(245, 230, 200, 0.7);
+  font-size: 0.95rem;
+}

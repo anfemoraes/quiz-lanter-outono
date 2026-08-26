@@ -1,0 +1,44 @@
+.lanterna {
+  position: absolute;
+  width: 64px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.lanterna__svg {
+  width: 100%;
+  height: 100%;
+  color: #C8102E;
+  filter: drop-shadow(0 0 10px rgba(200, 16, 46, 0.4));
+}
+
+.lanterna__ideograma {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #D4AF37;
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.5);
+  pointer-events: none;
+  user-select: none;
+  animation: piscar-suave 2.6s ease-in-out infinite;
+}
+
+@keyframes piscar-suave {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lanterna__ideograma {
+    animation: none;
+  }
+}
