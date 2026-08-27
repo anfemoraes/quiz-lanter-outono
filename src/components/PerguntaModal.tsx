@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Pergunta } from '../data/perguntas';
 import { embaralharPergunta } from '../utils/embaralhar';
+import { useIdioma } from '../components/IdiomaContext';
 
 interface PerguntaModalProps {
   pergunta: Pergunta;
@@ -9,6 +10,7 @@ interface PerguntaModalProps {
 }
 
 export function PerguntaModal({ pergunta, onResponder, onFechar }: PerguntaModalProps) {
+  const { idioma } = useIdioma();
   const perguntaEmbaralhada = useMemo(() => embaralharPergunta(pergunta), [pergunta.id]);
   const [escolhida, setEscolhida] = useState<number | null>(null);
 
@@ -21,15 +23,11 @@ export function PerguntaModal({ pergunta, onResponder, onFechar }: PerguntaModal
   return (
     <div className="pergunta-overlay" role="dialog" aria-modal="true">
       <div className="pergunta-card">
-        <button
-          className="pergunta-card__fechar"
-          onClick={onFechar}
-          aria-label="Fechar sem responder"
-        >
+        <button className="pergunta-card__fechar" onClick={onFechar} aria-label="Fechar sem responder">
           ×
         </button>
 
-        <p className="pergunta-card__enigma">{perguntaEmbaralhada.enigma}</p>
+        <p className="pergunta-card__enigma">{perguntaEmbaralhada.enigma[idioma]}</p>
 
         <div className="pergunta-card__opcoes">
           {perguntaEmbaralhada.opcoes.map((opcao, index) => {
@@ -42,15 +40,10 @@ export function PerguntaModal({ pergunta, onResponder, onFechar }: PerguntaModal
             else if (respondeu && ehEscolhida && !ehCorreta) estado = 'errada';
 
             return (
-              <button
-                key={index}
-                className={`pergunta-card__opcao ${estado}`}
-                onClick={() => escolher(index)}
-                disabled={respondeu}
-              >
+              <button key={index} className={`pergunta-card__opcao ${estado}`} onClick={() => escolher(index)} disabled={respondeu}>
                 <span className="pergunta-card__icone">{opcao.icone}</span>
                 <span className="pergunta-card__ideograma">{opcao.ideograma}</span>
-                <span className="pergunta-card__texto">{opcao.texto}</span>
+                <span className="pergunta-card__texto">{opcao.texto[idioma]}</span>
               </button>
             );
           })}
@@ -58,7 +51,7 @@ export function PerguntaModal({ pergunta, onResponder, onFechar }: PerguntaModal
 
         {escolhida !== null && (
           <button className="pergunta-card__continuar" onClick={onFechar}>
-            Continuar
+            {idioma === 'pt' ? 'Continuar' : '继续'}
           </button>
         )}
       </div>
