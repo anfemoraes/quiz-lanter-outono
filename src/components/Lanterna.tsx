@@ -90,17 +90,27 @@ export function Lanterna({ id, top, left, ideograma, respondida = false, onTocar
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !respondida) return;
+    if (!el) return;
 
-    flutuandoRef.current = false;
-
-    gsap.to(el, {
-      y: '-=60',
-      scale: 0.6,
-      opacity: 0,
-      duration: 1.8,
-      ease: 'power2.in',
-    });
+    if (respondida) {
+      flutuandoRef.current = false;
+      gsap.to(el, {
+        y: '-=60',
+        scale: 0.6,
+        opacity: 0,
+        duration: 1.8,
+        ease: 'power2.in',
+      });
+    } else {
+      gsap.killTweensOf(el);
+      flutuandoRef.current = true;
+      gsap.to(el, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+      });
+    }
   }, [respondida]);
 
   return (

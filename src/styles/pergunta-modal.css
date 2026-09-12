@@ -1,12 +1,12 @@
 .pergunta-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 10, 26, 0.75);
-  backdrop-filter: blur(3px);
+  background: rgba(6, 10, 26, 0.78);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   z-index: 100;
   animation: overlay-entrar 0.25s ease-out;
 }
@@ -17,82 +17,129 @@
 }
 
 .pergunta-card {
+  position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 410px;
   background:
-    radial-gradient(circle at 15% 20%, rgba(180, 140, 80, 0.12) 0%, transparent 35%),
-    radial-gradient(circle at 85% 75%, rgba(180, 140, 80, 0.10) 0%, transparent 40%),
-    linear-gradient(180deg, #F3E6C8 0%, #E9D6A8 100%);
-  border: 1px solid rgba(139, 94, 34, 0.35);
-  color: #0a0908;
-  border-radius: 6px;
-  padding: 30px 24px;
+    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(138, 12, 32, 0.06) 0%, transparent 45%),
+    linear-gradient(180deg, #FAF4E6 0%, #F1E2C3 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+  padding: 28px 22px;
   box-shadow:
-    0 0 0 1px rgba(139, 94, 34, 0.15),
-    0 20px 60px rgba(0, 0, 0, 0.5);
+    0 0 0 1px rgba(212, 175, 55, 0.2),
+    0 24px 50px rgba(0, 0, 0, 0.6);
+  color: #2C1810;
   animation: card-entrar 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box;
 }
 
 @keyframes card-entrar {
-  from { opacity: 0; transform: scale(0.9) translateY(12px); }
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+/* Botão Fechar (X) claramente visível */
+.pergunta-card__fechar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(138, 12, 32, 0.15);
+  background: rgba(138, 12, 32, 0.06);
+  color: #8A0C20;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.pergunta-card__fechar:hover {
+  background: rgba(138, 12, 32, 0.16);
+  border-color: #8A0C20;
+  transform: scale(1.05);
+}
+
+.pergunta-card__fechar:active {
+  transform: scale(0.92);
+}
+
 .pergunta-card__enigma {
-  color: #0a0908;
+  font-family: 'Noto Serif SC', serif;
+  color: #2C1810;
   font-size: 1.05rem;
   line-height: 1.6;
   text-align: center;
-  margin: 0 0 24px;
-  font-style: italic;
+  margin: 0 0 22px;
 }
 
 .pergunta-card__opcoes {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .pergunta-card__opcao {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(139, 94, 34, 0.4);
-  background: rgba(255, 255, 255, 0.35);
-  color: #0a0908;
-  font-size: 1rem;
+  border: 1px solid rgba(180, 140, 80, 0.35);
+  background: rgba(255, 255, 255, 0.7);
+  color: #2C1810;
+  font-size: 0.98rem;
   text-align: left;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
   touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.pergunta-card__opcao:not(:disabled):hover {
+  background: rgba(138, 12, 32, 0.08);
+  border-color: #8A0C20;
+  transform: translateX(3px);
 }
 
 .pergunta-card__opcao:not(:disabled):active {
   transform: scale(0.98);
 }
 
-.pergunta-card__opcao:not(:disabled):hover {
-  background: rgba(200, 16, 46, 0.08);
-  border-color: #C8102E;
+.pergunta-card__ideograma {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #8A0C20;
+  width: 28px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.pergunta-card__icone {
-  font-size: 1.3rem;
-  line-height: 1;
+.pergunta-card__texto {
+  flex: 1;
+  font-weight: 500;
 }
 
 .pergunta-card__opcao.correta {
-  background: rgba(76, 175, 80, 0.18);
+  background: rgba(46, 125, 50, 0.14);
   border-color: #2E7D32;
   color: #1B5E20;
 }
 
+.pergunta-card__opcao.correta .pergunta-card__ideograma {
+  color: #1B5E20;
+}
+
 .pergunta-card__opcao.errada {
-  background: rgba(200, 16, 46, 0.15);
-  border-color: #C8102E;
+  background: rgba(138, 12, 32, 0.14);
+  border-color: #8A0C20;
   color: #8A0C20;
 }
 
@@ -103,85 +150,125 @@
 .pergunta-card__continuar {
   display: block;
   width: 100%;
-  margin-top: 22px;
+  margin-top: 20px;
   padding: 13px;
   border-radius: 8px;
-  border: none;
-  background: linear-gradient(180deg, #C8102E 0%, #A10E26 100%);
-  color: #F5E6C8;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: linear-gradient(180deg, #8A0C20 0%, #6E0818 100%);
+  color: #FAF4E6;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  box-shadow: 0 4px 14px rgba(138, 12, 32, 0.35);
   transition: transform 0.1s ease, box-shadow 0.15s ease;
   touch-action: manipulation;
 }
 
-.pergunta-card__continuar:active {
-  transform: scale(0.97);
-}
-
 .pergunta-card__continuar:hover {
-  box-shadow: 0 0 16px rgba(200, 16, 46, 0.4);
-}
-.pergunta-card {
-  position: relative; /* necessário pro X se posicionar em relação ao card */
-  /* ...resto que já existe continua igual... */
+  box-shadow: 0 6px 20px rgba(138, 12, 32, 0.5);
 }
 
-.pergunta-card__fechar {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: rgba(139, 94, 34, 0.12);
-  color: #5C3A1E;
-  font-size: 1.4rem;
-  line-height: 1;
-  border-radius: 50%;
-  cursor: pointer;
-  touch-action: manipulation;
-  transition: background 0.15s ease;
+.pergunta-card__continuar:active {
+  transform: scale(0.98);
 }
 
-.pergunta-card__fechar:hover {
-  background: rgba(200, 16, 46, 0.15);
-  color: #8A0C20;
-}
-
-.pergunta-card__fechar:active {
-  transform: scale(0.92);
-}
-.pergunta-card__ideograma {
-  font-family: 'Noto Serif SC', serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: #8A0C20;
-  flex-shrink: 0;
-}
-
-.pergunta-card__texto {
-  flex: 1;
-}
+/* Card Final */
 .pergunta-card--final {
   text-align: center;
+  padding: 30px 24px 26px;
+}
+
+.pergunta-card__ilustracao-final {
+  margin: 0 auto 14px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #D4AF37;
+  box-shadow:
+    0 0 20px rgba(212, 175, 55, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pergunta-card__coelho-final {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .pergunta-card__ideograma-final {
   font-family: 'Noto Serif SC', serif;
   font-weight: 700;
-  font-size: 1.3rem;
-  color: #C8102E;
-  margin: 0 0 8px;
+  font-size: 1.45rem;
+  color: #8A0C20;
+  margin: 0 0 2px;
+  letter-spacing: 0.06em;
+}
+
+.pergunta-card__subtitulo-final {
+  font-size: 0.88rem;
+  color: #6E5A44;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.pergunta-card__pontuacao-final {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(138, 12, 32, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  margin: 0 auto 16px;
+}
+
+.pergunta-card__mooncake-final-ico {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
 }
 
 .pergunta-card__resultado-numero {
-  font-size: 2.4rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #8A0C20;
-  margin: 0 0 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pergunta-card__pontos-rotulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6E5A44;
+}
+
+.pergunta-card__reiniciar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 22px;
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: linear-gradient(180deg, #8A0C20 0%, #6E0818 100%);
+  color: #FAF4E6;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(138, 12, 32, 0.35);
+  transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+  touch-action: manipulation;
+}
+
+.pergunta-card__reiniciar:hover {
+  box-shadow: 0 6px 22px rgba(138, 12, 32, 0.5);
+  transform: translateY(-1px);
+}
+
+.pergunta-card__reiniciar:active {
+  transform: scale(0.98);
 }

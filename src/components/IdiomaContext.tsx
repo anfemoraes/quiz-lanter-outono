@@ -23,6 +23,7 @@ export function IdiomaProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useIdioma() {
   const contexto = useContext(IdiomaContext);
   if (!contexto) throw new Error('useIdioma precisa estar dentro de um IdiomaProvider');

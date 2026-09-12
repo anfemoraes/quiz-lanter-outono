@@ -1,0 +1,61 @@
+.topo-esquerda {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.musica-toggle__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.musica-toggle__rotulo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 200, 0.75);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  padding-left: 2px;
+}
+
+.musica-toggle__botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(11, 18, 51, 0.65);
+  backdrop-filter: blur(6px);
+  color: rgba(245, 230, 200, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.musica-toggle__botao:hover {
+  background: rgba(138, 12, 32, 0.35);
+  border-color: #D4AF37;
+  color: #D4AF37;
+  transform: scale(1.05);
+}
+
+.musica-toggle__botao.ativo {
+  border-color: #D4AF37;
+  color: #D4AF37;
+  background: rgba(138, 12, 32, 0.4);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+.musica-toggle__botao:active {
+  transform: scale(0.95);
+}

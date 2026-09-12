@@ -3,7 +3,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% 15%, #1a2f5c 0%, #0B1233 55%, #060a1a 100%);
+  background: radial-gradient(ellipse at 50% 18%, #1a2f5c 0%, #0B1233 52%, #060a1a 100%);
 }
 
 .ceu-noturno__estrelas {
@@ -22,6 +22,8 @@
   background-size: 360px 220px;
   animation: cintilar 4s ease-in-out infinite alternate;
   opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
 }
 
 @keyframes cintilar {
@@ -29,28 +31,201 @@
   to { opacity: 1; }
 }
 
-/* Lua cheia ao fundo, discreta */
-.ceu-noturno__lua {
+/* Lua Cheia em destaque suave com halo e brilho atmosférico animado */
+.ceu-noturno__lua-wrapper {
   position: absolute;
-  top: 8%;
-  right: 12%;
-  width: 90px;
-  height: 90px;
+  top: 6%;
+  right: 10%;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff8e1, #f3d98b 70%);
-  box-shadow: 0 0 40px 10px rgba(243, 217, 139, 0.35);
+  pointer-events: none;
+  z-index: 2;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Aura etérea de luz ao redor da lua */
+.ceu-noturno__lua-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -45px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 237, 185, 0.25) 0%, rgba(212, 175, 55, 0.12) 45%, transparent 75%);
+  filter: blur(14px);
+  animation: lua-aura-expandir 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ceu-noturno__lua-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  animation: lua-brilho-respirar 4.5s ease-in-out infinite alternate;
+}
+
+.ceu-noturno__lua-halo {
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 248, 220, 0.28) 0%,
+    rgba(243, 217, 139, 0.16) 40%,
+    rgba(212, 175, 55, 0.06) 65%,
+    transparent 80%
+  );
+  pointer-events: none;
+  animation: halo-pulsar 6s ease-in-out infinite alternate;
+}
+
+@keyframes lua-brilho-respirar {
+  0% {
+    filter: contrast(1.04) brightness(1.0);
+    box-shadow:
+      0 0 25px rgba(254, 237, 185, 0.4),
+      0 0 55px rgba(212, 175, 55, 0.22);
+  }
+  50% {
+    filter: contrast(1.06) brightness(1.06);
+    box-shadow:
+      0 0 38px rgba(255, 245, 205, 0.6),
+      0 0 75px rgba(229, 193, 88, 0.35),
+      0 0 110px rgba(212, 175, 55, 0.15);
+  }
+  100% {
+    filter: contrast(1.08) brightness(1.12);
+    box-shadow:
+      0 0 50px rgba(255, 250, 225, 0.75),
+      0 0 95px rgba(243, 217, 139, 0.45),
+      0 0 145px rgba(212, 175, 55, 0.22);
+  }
+}
+
+@keyframes halo-pulsar {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.14);
+    opacity: 1;
+  }
+}
+
+@keyframes lua-aura-expandir {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+/* Nuvens decorativas com amplo espaço negativo */
+.ceu-noturno__nuvem {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.45;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.ceu-noturno__nuvem img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ceu-noturno__nuvem--1 {
+  top: 7%;
+  left: 6%;
+  width: 160px;
+  animation: nuvem-ondular-1 20s ease-in-out infinite;
+}
+
+.ceu-noturno__nuvem--2 {
+  bottom: 8%;
+  right: 8%;
+  width: 200px;
+  opacity: 0.35;
+  animation: nuvem-ondular-2 26s ease-in-out infinite;
+}
+
+/* Movimento ondulado suave com deslocamento em curva e oscilação de altura */
+@keyframes nuvem-ondular-1 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(16px, -8px) rotate(1deg);
+  }
+  50% {
+    transform: translate(32px, 3px) rotate(-0.8deg);
+  }
+  75% {
+    transform: translate(14px, 10px) rotate(0.6deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes nuvem-ondular-2 {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-18px, 8px) rotate(-1deg);
+  }
+  50% {
+    transform: translate(-34px, -5px) rotate(0.8deg);
+  }
+  75% {
+    transform: translate(-16px, -10px) rotate(-0.5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .ceu-noturno__lua-wrapper {
+    top: 5%;
+    right: 6%;
+    width: 86px;
+    height: 86px;
+  }
+
+  .ceu-noturno__nuvem--1 {
+    top: 8%;
+    left: 2%;
+    width: 110px;
+    opacity: 0.3;
+  }
+
+  .ceu-noturno__nuvem--2 {
+    bottom: 5%;
+    right: 4%;
+    width: 130px;
+    opacity: 0.25;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ceu-noturno__estrelas { animation: none; }
-}
-.ceu-noturno__nuvens {
-  position: absolute;
-  inset: 0;
-  background-image: url('/src/assets/nuvem-pattern.svg');
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  opacity: 0.06;
-  pointer-events: none;
-  mix-blend-mode: screen;
+  .ceu-noturno__estrelas,
+  .ceu-noturno__lua-wrapper::before,
+  .ceu-noturno__lua-img,
+  .ceu-noturno__lua-halo,
+  .ceu-noturno__nuvem--1,
+  .ceu-noturno__nuvem--2 {
+    animation: none;
+  }
 }

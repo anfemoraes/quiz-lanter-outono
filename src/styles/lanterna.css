@@ -8,6 +8,12 @@
   padding: 0;
   cursor: pointer;
   touch-action: manipulation;
+  z-index: 10;
+}
+
+.lanterna:hover,
+.lanterna:focus-visible {
+  z-index: 12;
 }
 
 .lanterna__svg {
